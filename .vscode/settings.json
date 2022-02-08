@@ -3,7 +3,8 @@
         "iosfwd": "cpp",
         "vector": "cpp",
         "algorithm": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "iostream": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
