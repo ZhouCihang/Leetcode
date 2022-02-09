@@ -5,7 +5,10 @@
         "algorithm": "cpp",
         "stack": "cpp",
         "iostream": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "__split_buffer": "cpp",
+        "deque": "cpp",
+        "string": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
