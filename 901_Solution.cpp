@@ -7,7 +7,6 @@ class StockSpanner
 {
 
     vector<int> span;
-    //vector<int> span = prices;
     stack<int> s;
     int i = 0;
 
