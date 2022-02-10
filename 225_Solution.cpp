@@ -3,44 +3,49 @@ using namespace std;
 #include <stack>
 #include <queue>
 
-class MyStack {
+class MyStack
+{
 
-queue<int> q1;
-queue<int> q2;
+    queue<int> q1;
+    queue<int> q2;
 
 public:
-    MyStack() {
-        
+    MyStack()
+    {
     }
-    
-    void push(int x) {
-        q1.push(x);
-    }
-    
-    int pop() {
-        while (!q1.empty()) {
+
+    void push(int x)
+    {
+        q2.push(x);
+        while (!q1.empty())
+        {
             q2.push(q1.front());
             q1.pop();
         }
-        int temp = q2.front();
-        q2.pop();
-        while (!q2.empty()) {
-            q1.push(q2.front());
-            q2.pop();
-        }
-        return temp;
+        swap(q1, q2);
     }
-    
-    int top() {
-        
-        return q1.back();
+
+    int pop()
+    {
+        int result = top();
+        q1.pop();
+        return result;
     }
-    
-    bool empty() {
-        if(q1.empty()){
+
+    int top()
+    {
+
+        return q1.front();
+    }
+
+    bool empty()
+    {
+        if (q1.empty())
+        {
             return true;
         }
-        else{
+        else
+        {
             return false;
         }
     }
@@ -55,6 +60,7 @@ public:
  * bool param_4 = obj->empty();
  */
 
-int main(){
+int main()
+{
     return 0;
 }
