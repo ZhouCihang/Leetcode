@@ -13,16 +13,29 @@ public:
             q1.push_back(i);
         }
 
-        while (q1.size() != 1)
-        {  
-            for(int i = 0; i< k-1; i++){
-                int x = q1.front();
-                q1.pop_front();
-                q1.push_back(x);
+        //method 1
+        // while (q1.size() != 1)
+        // {  
+        //     for(int i = 0; i< k-1; i++){
+        //         int x = q1.front();
+        //         q1.pop_front();
+        //         q1.push_back(x);
+        //     }
+        //     q1.pop_front();
+        // }
+        // return q1.front();
+
+        //method 2
+        int idx = 0;
+        while(q1.size() > 1){
+            int pos =( idx + k -1 ) % q1.size(); 
+            q1.erase(q1.begin() + pos);
+            idx = pos;
+            if(idx >= q1.size()){
+                idx -= q1.size();
             }
-            q1.pop_front();
         }
-        return q1.front();
+        return q1[0];
     }
 };
 
