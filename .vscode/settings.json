@@ -9,7 +9,8 @@
         "__split_buffer": "cpp",
         "deque": "cpp",
         "string": "cpp",
-        "unordered_map": "cpp"
+        "unordered_map": "cpp",
+        "__hash_table": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }
