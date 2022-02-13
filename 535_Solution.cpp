@@ -1,0 +1,62 @@
+#include <iostream>
+using namespace std;
+#include <unordered_map>
+#include <vector>
+
+class Solution
+{
+public:
+    unordered_map<string, string> codeDB, urlDB;
+    const string chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+    string getCode()
+    {
+        string code = "";
+        for (int i = 0; i < 6; i++)
+        {
+            code += chars[rand() % 62];
+        }
+        return "http://tinyurl.com/" + code;
+    }
+
+    // Encodes a URL to a shortened URL.
+    string encode(string longUrl)
+    {
+        if (urlDB.find(longUrl) != urlDB.end())
+        {
+            return urlDB[longUrl];
+        }
+        string code = getCode();
+
+        while (codeDB.find(code) != codeDB.end())
+        {
+            code = getCode();
+        }
+
+        codeDB[code] = longUrl;
+        urlDB[longUrl] = code;
+        return code;
+    }
+
+    // Decodes a shortened URL to its original URL.
+    string decode(string shortUrl)
+    {
+        return codeDB[shortUrl];
+    }
+};
+
+// Your Solution object will be instantiated and called as such:
+// Solution solution;
+// solution.decode(solution.encode(url));
+
+int main()
+{
+    string url = "https://leetcode.com/problems/design-tinyurl";
+
+    Solution obj = Solution();
+    string tiny = obj.encode(url); // returns the encoded tiny url.
+    cout << tiny << endl;
+    string ans = obj.decode(tiny); // returns the original url after deconding it.
+    cout <<ans<< endl;
+    return 0;
+}
