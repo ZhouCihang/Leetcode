@@ -2,23 +2,20 @@
 using namespace std;
 #include <vector>
 #include <unordered_map>
-#include <set>
+#include <unordered_set>
 
 class Solution {
 public:
     vector<int> findingUsersActiveMinutes(vector<vector<int>>& logs, int k) {
-        unordered_map<int, set<int>> userMap;
-        unordered_map<int, set<int>>::iterator it;
+        unordered_map<int, unordered_set<int>> userMap;
         
         for(int i = 0; i < logs.size(); i++){
-            int id = logs[i][0];
-            int sec = logs[i][1];
-            userMap[id].insert(sec);
+            userMap[logs[i][0]].insert(logs[i][1]);
         }
 
-        vector<int> result(k,0);
-        for (auto it = userMap.begin(); it != userMap.end(); ++it) {
-            result[it->second.size()-1]++;
+        vector<int> result(k);
+        for(auto &m : userMap){
+            result[m.second.size() - 1]++;
         }
         return result;
     }
