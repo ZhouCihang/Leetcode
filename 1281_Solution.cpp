@@ -1,5 +1,7 @@
 #include <iostream>
 using namespace std;
+//#include <math.h>
+#include <cmath>
 
 class Solution {
 public:
@@ -15,18 +17,21 @@ public:
             prod = prod * temp;
             sum = sum + temp;
         }
-        cout<<prod<<" "<<sum<<endl;
-
-        return prod - sum;
-        
-        
+        return prod - sum; 
     }
+
+    int numberOfSteps (int num) {
+        return num == 0 ? 0 : log2(num) + bitset<32>(num).count();
+}
 };
 
 int main(){
 
     Solution s = Solution();
     cout << s.subtractProductAndSum(234)<<endl;
+
+    cout <<s.numberOfSteps(14) << endl;
+
 
     return 0;
 }
