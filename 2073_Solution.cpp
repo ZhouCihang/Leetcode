@@ -10,31 +10,31 @@ public:
     {
         int count = 0;
 
-        // while (true)
-        // {
-        //     for (int i = 0; i < tickets.size(); i++)
-        //     {
-        //         if(tickets[i] == 0)
-        //             continue;
-                
-        //         tickets[i] = tickets[i] - 1;
-        //         count++;
-
-        //         if(tickets[k] == 0)
-        //             return count;
-        //     }
-        // }
-
-        while(tickets[k] != 0){
-            for (int i = 0; i < tickets.size(); i++){
+        while (true)
+        {
+            for (int i = 0; i < tickets.size(); i++)
+            {
                 if(tickets[i] == 0)
                     continue;
                 
                 tickets[i] = tickets[i] - 1;
                 count++;
+
+                if(tickets[k] == 0)
+                    return count;
             }
         }
-        return count;
+
+        // while(tickets[k] != 0){
+        //     for (int i = 0; i < tickets.size(); i++){
+        //         if(tickets[i] == 0)
+        //             continue;
+                
+        //         tickets[i] = tickets[i] - 1;
+        //         count++;
+        //     }
+        // }
+        // return count;
     }
 };
 
