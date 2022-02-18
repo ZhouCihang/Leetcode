@@ -52,7 +52,7 @@ public:
 
 void test(){
     Solution solution;
-    vector<vector<int> > grid{{4,3,2,-1},{3,2,1,-1},{1,1,}};
+    vector<vector<int> > grid{{4,3,2,-1},{3,2,1,-1},{-1,-1, -2, -3}};
     cout << solution.countNegatives(grid) << endl;
 }
 

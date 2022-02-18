@@ -29,7 +29,7 @@ public:
 
 void test(){
     Solution solution;
-    vector<int> arr{0,5, 10, 5, 2};
+    vector<int> arr{0, 5, 10, 5, 2};
     cout<<solution.peakIndexInMountainArray(arr)<<endl;
 }
 
