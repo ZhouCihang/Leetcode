@@ -6,21 +6,34 @@ using namespace std;
 class Solution
 {
 public:
-    int singleNumber(vector<int> &nums)
+    //map
+    int singleNumber2(vector<int> &nums)
     {
         int n = nums.size();
         unordered_map<int, int> res;
 
-        for(int i = 0; i < n; i++){
+        for (int i = 0; i < n; i++)
+        {
             res[nums[i]]++;
         }
 
-        for(auto& c:res){
-            if(c.second == 1){
+        for (auto &c : res)
+        {
+            if (c.second == 1)
+            {
                 return c.first;
             }
         }
         return -1;
+    }
+
+    //bitwise
+    int singleNumber(vector<int> &nums)
+    {
+        int ans = 0;
+        for (auto x : nums)
+            ans ^= x;
+        return ans;
     }
 };
 
