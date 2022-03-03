@@ -29,6 +29,15 @@ public:
         }
         return res;
     }
+
+    int memo[46] = {0};
+    int climbStairsDP(int n) {
+        if(n <= 2)
+            return n;
+        if(memo[n])
+            return memo[n];
+        return memo[n] = climbStairs(n - 1) + climbStairs(n - 2);
+    }
 };
 
 int main()
