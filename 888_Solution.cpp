@@ -12,12 +12,6 @@ public:
         int sumBob = accumulate(bobSizes.begin(), bobSizes.end(), 0);
 
         int delta = (sumAlice - sumBob) / 2;
-
-        // unordered_map<int, int> mapAlice;
-        // unordered_map<int, int>::iterator it;
-        // for (int i = 0; i < aliceSizes.size(); i++){
-        //     mapAlice[i] = aliceSizes[i];
-        // }
         unordered_set<int> mapAlice(aliceSizes.begin(), aliceSizes.end());
         vector<int> result;
         for(int i = 0; i < bobSizes.size(); i++){

@@ -19,7 +19,6 @@ public:
         int start = 0, end = 0;
         for(int i = 0; i < length; i++){
             end = max(end, last[s[i] - 'a']);
-            cout << "end: " << end <<endl;
             if(i == end){
                 partition.push_back(end - start+1);
                 start = end + 1;

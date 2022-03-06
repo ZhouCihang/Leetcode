@@ -39,7 +39,7 @@ public:
             for (int i = 0; i < 4; i++)
             {
                 int a = x + dx[i];
-                int b = y + dx[i];
+                int b = y + dy[i];
                 if (a >= 0 && a < m && b >= 0 && b < n && visited[a][b] != 1)
                 {
                     res[a][b] = res[x][y] + 1;

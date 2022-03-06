@@ -34,7 +34,6 @@ public:
             return k;
         
         int low(0), high(arr.size());
-        cout <<low << " " <<high<<endl;
         while (low < high)
         {
             int mid = low + ((high - low) >> 1);
