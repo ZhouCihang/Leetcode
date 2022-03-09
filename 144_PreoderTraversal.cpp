@@ -17,18 +17,52 @@ struct TreeNode
 class Solution
 {
 public:
+    vector<int> preorderTraversalUnion(TreeNode *root)
+    {
+        vector<int> result;
+        stack<TreeNode *> st;
+        if (root != NULL)
+            st.push(root);
+
+        while (!st.empty())
+        {
+            TreeNode *node = st.top();
+            if (node != NULL)
+            {
+                st.pop();
+                if (node->left)
+                    st.push(node->left); //right
+                if (node->right)
+                    st.push(node->right); //left
+                st.push(node);            //mid
+                st.push(NULL);
+            }
+            else
+            {
+                st.pop();
+                node = st.top();
+                st.pop();
+                result.push_back(node->val);
+            }
+        }
+        return result;
+    }
     vector<int> preorderTraversalIterative(TreeNode *root)
     {
         vector<int> result;
-        if(root == NULL) return result;
+        if (root == NULL)
+            return result;
         stack<TreeNode *> st;
         st.push(root);
-        while(!st.empty()){
-            TreeNode * node = st.top();
+        while (!st.empty())
+        {
+            TreeNode *node = st.top();
             st.pop();
             result.push_back(node->val);
-            if(node->right) st.push(node->right);
-            if(node->left) st.push(node->left);
+            if (node->right)
+                st.push(node->right);
+            if (node->left)
+                st.push(node->left);
         }
         return result;
     }

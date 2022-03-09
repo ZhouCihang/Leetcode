@@ -33,12 +33,10 @@ public:
         }
         return false;
     }
-
 };
 
 int main()
 {
-
     Solution s;
     vector<int> nums{4, 3, 2, 3, 5, 2, 1};
     cout << s.canPartitionKSubsets(nums, 4) << endl;
