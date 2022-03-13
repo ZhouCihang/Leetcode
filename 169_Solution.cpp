@@ -15,13 +15,30 @@ public:
         }
 
         int count = -1, ans;
-        for (auto &i : m){
-            if(i.second > nums.size()/2){
+        for (auto &i : m)
+        {
+            if (i.second > nums.size() / 2)
+            {
                 ans = i.first;
                 break;
             }
         }
         return ans;
+    }
+
+    int majorityElementMooreAlgo(vector<int> &nums)
+    {
+        int count = 0;
+        int candidates = -1;
+        for(auto &n : nums){
+            if(count == 0) candidates = n;
+            if(n == candidates){
+                count++;
+            }else{
+                count--;
+            }
+        }
+        return candidates;
     }
 };
 
