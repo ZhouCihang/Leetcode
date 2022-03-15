@@ -2,38 +2,35 @@
 using namespace std;
 #include <vector>
 
-class Solution {
+class Solution
+{
 public:
-    int peakIndexInMountainArray(vector<int>& arr) {
-        int ptA = 0, ptB = arr.size() - 1;
-        int res = -1;
-
-        while (ptA <= ptB) {
-            if(arr[ptA + 1] > arr[ptA] && arr[ptB - 1] > arr[ptB]){
-                ptA++; //
-                ptB--;
-            }else{
-                if(arr[ptA + 1] < arr[ptA]){
-                    res = ptA;
-                    return res;
-                }
-                if(arr[ptB - 1] < arr[ptB]){
-                    res = ptB;
-                    return res;
-                }
-            }
+    int peakIndexInMountainArray(vector<int> &arr)
+    {
+        int low = 0, high = arr.size()-1;
+        while (low <= high) {
+            int mid = low + ((high - low) >> 1);
+            
+            if(arr[mid] > arr[mid+1] && arr[mid] > arr[mid - 1]) return mid;
+            
+            if (arr[mid] < arr[mid+1])
+                low = mid+1;
+            else
+                high = mid-1;
         }
-        return res;
+        return low;
     }
 };
 
-void test(){
+void test()
+{
     Solution solution;
-    vector<int> arr{0, 5, 10, 5, 2};
-    cout<<solution.peakIndexInMountainArray(arr)<<endl;
+    vector<int> arr{0, 5,7,10, 5, 0};
+    cout << solution.peakIndexInMountainArray(arr) << endl;
 }
 
-int main(){
+int main()
+{
     test();
     return 0;
 }
