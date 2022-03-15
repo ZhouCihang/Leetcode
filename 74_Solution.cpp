@@ -5,7 +5,7 @@ using namespace std;
 class Solution
 {
 public:
-    bool searchMatrix(vector<vector<int> > &matrix, int target)
+    bool searchMatrix1(vector<vector<int> > &matrix, int target)
     {
 
         if (!matrix.size() || !matrix[0].size())
@@ -83,6 +83,27 @@ public:
             // we found our value!
             else
                 return true;
+        }
+        return false;
+    }
+    bool searchMatrix(vector<vector<int> > &matrix, int target)
+    {
+        if (!matrix.size() || !matrix[0].size())
+            return false;
+
+        int row = matrix.size(), col = matrix[0].size();
+        int left = 0, right = row * col - 1, mid;
+        while (left <= right)
+        {
+            mid = left + ((right - left) >> 1);
+            int rownum = mid / col;
+            int colnum = mid % col;
+            if (matrix[rownum][colnum] == target)
+                return true;
+            else if (matrix[rownum][colnum] < target)
+                left = mid + 1;
+            else if (matrix[rownum][colnum] > target)
+                right = mid - 1;
         }
         return false;
     }
