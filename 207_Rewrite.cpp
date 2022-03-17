@@ -56,7 +56,9 @@ int main(){
 
     Solution s;
     vector<vector<int> > prerequisites{{2, 0},{2,1},{3,2},{4,2},{5,3},{6,4},{5,6},{7,5},{7,6}};
-    cout<<s.canFinish(8, prerequisites)<< endl;
+    vector<vector<int> > prerequisites2{{3, 0}, {3, 1}, {3, 2}, {3, 4}, {5, 4}};
+    
+    cout<<s.canFinish(8, prerequisites2)<< endl;
     return 0;
 
 }
