@@ -10,23 +10,27 @@ public:
         int result = 0;
         int m = grid.size(), n = grid[0].size();
 
+        // first and last row
         for (int j = 0; j < n; j++)
         {
             dfs(grid, 0, j);
             dfs(grid, m - 1, j);
         }
 
-        for(int i = 0; i < m; i++){
-            for(int j = 0; j < n; j++){
-                cout << grid[i][j] << " ";
-            }
-            cout << endl;
-        }
-
+        //// first and last column
         for (int i = 0; i < m; i++)
         {
             dfs(grid, i, 0);
             dfs(grid, i, n - 1);
+        }
+
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                cout << grid[i][j] << " ";
+            }
+            cout << endl;
         }
 
         for (int i = 0; i < m; i++)
@@ -61,11 +65,11 @@ public:
 int main()
 {
     Solution s;
-    vector<vector<int> > grid{{1, 0, 0, 0, 0, 0, 0, 0},
-                               {1, 0, 0, 0, 0, 1, 1, 0},
-                               {1, 0, 1, 0, 1, 1, 1, 0},
-                               {1, 0, 0, 0, 0, 1, 0, 1},
-                               {1, 1, 1, 1, 1, 1, 1, 0}};
+    vector<vector<int> > grid{{0, 0, 0, 0, 0, 0, 0, 0},
+                              {0, 1, 1, 1, 1, 1, 1, 0},
+                              {0, 1, 0, 1, 0, 0, 1, 0},
+                              {0, 1, 1, 1, 1, 1, 1, 0},
+                              {0, 0, 0, 0, 0, 0, 0, 0}};
     cout << s.closedIsland(grid);
     return 0;
 }
