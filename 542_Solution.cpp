@@ -5,15 +5,15 @@ using namespace std;
 
 class Solution
 {
+private:
+    static constexpr int dirs[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
 public:
     vector<vector<int> > updateMatrix(vector<vector<int> > &mat)
     {
         int m = mat.size(), n = mat[0].size();
-
-        //already visited
-        vector<vector<int> > visited(m, vector<int>(n, 0));
-        //result matrix
-        vector<vector<int> > res(m, vector<int>(n, 0));
+        vector<vector<int> > dist(m, vector<int>(n));
+        vector<vector<int> > seen(m, vector<int>(n));
         queue<pair<int, int> > q;
 
         for (int i = 0; i < m; i++)
@@ -22,33 +22,27 @@ public:
             {
                 if (mat[i][j] == 0)
                 {
-                    //equal to 1 means already visited
-                    visited[i][j] = 1;
-                    q.push(pair(i, j));
+                    q.emplace(i, j);
+                    seen[i][j] = 1;
                 }
             }
         }
 
-        while (q.size())
+        while (!q.empty())
         {
-            auto [x, y] = q.front();
+            auto [i, j] = q.front();
             q.pop();
-            int dx[4] = {-1, 0, 1, 0};
-            int dy[4] = {0, 1, 0, -1};
-
-            for (int i = 0; i < 4; i++)
-            {
-                int a = x + dx[i];
-                int b = y + dy[i];
-                if (a >= 0 && a < m && b >= 0 && b < n && visited[a][b] != 1)
-                {
-                    res[a][b] = res[x][y] + 1;
-                    q.push(pair(a, b));
-                    visited[a][b] = 1;
+            for(int d = 0; d < 4; d++){
+                int ni = i + dirs[d][0];
+                int nj = j + dirs[d][1];
+                if(ni >= 0 && ni < m && nj >= 0 && nj < n && !seen[ni][nj]){
+                    dist[ni][nj] = dist[i][j] + 1;
+                    q.emplace(ni, nj);
+                    seen[ni][nj] = 1;
                 }
             }
         }
-        return res;
+        return dist;
     }
 };
 
