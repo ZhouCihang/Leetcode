@@ -7,36 +7,27 @@ class Solution
 public:
     int maxAreaOfIsland(vector<vector<int> > &grid)
     {
-        int ans = 0, res = 0;
-        for (int i = 0; i < grid.size(); i++)
+        int row = grid.size(), col = grid[0].size();
+        int result = 0;
+        for (int i = 0; i < row; i++)
         {
-            for (int j = 0; j < grid[0].size(); j++)
+            for (int j = 0; j < col; j++)
             {
-                ans = isIslandDFS(grid, i, j);
-                res = max(res, ans);
-                ans = 0;
+                if(grid[i][j] == 1){
+                    result = max(result, dfs(grid, i, j));
+                }
             }
         }
-        return res;
+        return result;
     }
-    int isIslandDFS(vector<vector<int> > &grid, int i, int j)
+    int dfs(vector<vector<int> > &grid, int i, int j)
     {
-        if (i < grid.size() && i >= 0 && j < grid[0].size() && j >= 0)
-        {
-            if (grid[i][j] == 0)
-                return 0;
-            else
-            {
-                grid[i][j] = 0;
-                return 1 + isIslandDFS(grid, i - 1, j) +
-                       isIslandDFS(grid, i + 1, j) +
-                       isIslandDFS(grid, i, j - 1) +
-                       isIslandDFS(grid, i, j + 1);
-            }
-        }
-        else{
+        if (i < 0 || j < 0 || i >= grid.size() || j >= grid[0].size())
             return 0;
-        }
+        if (grid[i][j] == 0)
+            return 0;
+        grid[i][j] = 0;
+        return 1 + dfs(grid, i - 1, j) + dfs(grid, i + 1, j) + dfs(grid, i, j - 1) + dfs(grid, i, j + 1);
     }
 };
 
