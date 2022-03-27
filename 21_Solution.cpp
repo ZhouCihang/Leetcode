@@ -31,8 +31,10 @@ public:
             }
             prev = prev->next;
         }
-        if(list1 == nullptr) prev->next = list2;
-        else prev->next = list1;
+        // if(list1 == nullptr) prev->next = list2;
+        // else prev->next = list1;
+        // 合并后 l1 和 l2 最多只有一个还未被合并完，我们直接将链表末尾指向未合并完的链表即可
+        prev->next = list1 == nullptr ? list2 : list1;
         return result->next;
     }
 };
