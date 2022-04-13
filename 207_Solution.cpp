@@ -4,13 +4,6 @@ using namespace std;
 #include <unordered_set>
 #include <queue>
 
-// class Solution {
-// public:
-//     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
-//         unordered_set<int> preCheck;
-//     }
-// };
-
 bool TopSort(vector<vector<int> > &G, int n, vector<int> &inDegree)
 {
     int num = 0;

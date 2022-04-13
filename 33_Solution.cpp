@@ -14,6 +14,7 @@ public:
             mid = left + ((right - left) >> 1);
 
             if(target == nums[mid]) return mid;
+
             if (nums[mid] >= nums[left])
             {
                 if (target >= nums[left] && target < nums[mid])
@@ -25,7 +26,7 @@ public:
                     left = mid + 1;
                 }
             }
-            else
+            else if (nums[mid] < nums[left])
             {
                 if (target > nums[mid] && target <= nums[right])
                 {

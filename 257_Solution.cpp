@@ -21,15 +21,14 @@ public:
     {
         vector<string> result;
         string path = "";
-
-        if(root == NULL) return result;
+        
         dfs(root, result, path);
         return result;
     }
     void dfs(TreeNode *root, vector<string> &result, string path){
-        // if(root == NULL){
-        //     return;
-        // }
+        if(root == NULL){
+            return;
+        }
         path.append(to_string(root->val));
         path.append("->");
 

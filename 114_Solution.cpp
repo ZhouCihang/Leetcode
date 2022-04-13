@@ -18,17 +18,23 @@ class Solution
 public:
     void flatten(TreeNode *root)
     {
-        TreeNode *pt = root;
-        traverse(root, pt);
+        vector<TreeNode *> path;
+        traverse(root, path);
+
+        for (int i = 1; i < path.size(); ++i){
+            TreeNode *prev = path[i-1], *curr = path[i];
+            prev->left = NULL;
+            prev->right = curr;
+        }
     }
-    void traverse(TreeNode *pt, TreeNode *root)
+    void traverse(TreeNode *root, vector<TreeNode *> &path)
     {
         if (root == NULL)
             return;
 
-        pt->right = root;
-        traverse(root->left, pt);
-        traverse(root->right, pt);
+        path.push_back(root);
+        traverse(root->left, path);
+        traverse(root->right, path);
     }
 };
 
@@ -51,7 +57,7 @@ int main()
     rroot.right = &rrrroot;
 
     solution.flatten(&root);
-
+    
 
     return 0;
 }

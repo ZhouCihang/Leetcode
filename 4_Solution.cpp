@@ -12,15 +12,8 @@ public:
             nums1.push_back(nums2[i]);
         }
         sort(nums1.begin(), nums1.end());
-        for(int i = 0; i < nums1.size(); i++){
-            cout<<nums1[i]<< " ";
-        }
-        cout<<endl;
         size = nums1.size();
-        cout<<size<<endl;
-
         if(size % 2 == 0){
-            cout<<nums1[(size-1)/2] << " "<<nums1[size/2]<<endl;
             return (double)(nums1[(size-1)/2] + nums1[size/2]) / 2.0;
         }else{
             return double(nums1[size/2]);
