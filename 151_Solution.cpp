@@ -9,6 +9,7 @@ public:
     {
         // detect space and remove duplicates spaces
         // reverse the string
+        removeSpaces(inputString);
         reverseString(inputString, 0, inputString.length() - 1);
         int j = 0;
         for (int i = 1; i < inputString.length(); ++i)
@@ -29,6 +30,31 @@ public:
         while (startIndex < endIndex)
         {
             swap(str[startIndex++], str[endIndex--]);
+        }
+    }
+
+    void removeSpaces(string &str)
+    {
+        int slow = 0, fast = 0;
+        while (fast < str.length() && str[fast] == ' ')
+            ++fast;
+        while (fast < str.length())
+        {
+            if (fast > 0 && str[fast] == str[fast - 1] && str[fast] == ' ')
+            {
+                ++fast;
+            }
+            else
+            {
+                str[slow++] = str[fast++];
+            }
+        }
+        if (slow > 1 && str[slow - 1] == ' ')
+        {
+            str.resize(slow - 1);
+        }
+        else{
+            str.resize(slow);
         }
     }
 };
