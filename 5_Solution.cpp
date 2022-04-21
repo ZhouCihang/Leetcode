@@ -48,6 +48,6 @@ public:
 int main()
 {
     Solution s;
-    cout << s.longestPalindrome("babad") << endl;
+    cout << s.longestPalindrome("abc") << endl;
     return 0;
 }
