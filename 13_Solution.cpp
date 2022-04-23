@@ -7,39 +7,22 @@ class Solution
 public:
     int romanToInt2(string S)
     {
-        int ans = 0, num = 0;
-        for (int i = S.size() - 1; ~i; i--)
+        int res = 0;
+        unordered_map<char, int> mp = {{'M', 1000}, {'D', 500}, {'C', 100}, {'L', 50}, {'X', 10}, {'V', 5}, {'I', 1}};
+        for (int i = 0; i < S.length(); i++)
         {
-            switch (S[i])
+            if (mp[S[i]] < mp[S[i + 1]] && i != S.length() - 1)
             {
-            case 'I':
-                num = 1;
-                break;
-            case 'V':
-                num = 5;
-                break;
-            case 'X':
-                num = 10;
-                break;
-            case 'L':
-                num = 50;
-                break;
-            case 'C':
-                num = 100;
-                break;
-            case 'D':
-                num = 500;
-                break;
-            case 'M':
-                num = 1000;
-                break;
+                res = res - mp[S[i]];
+                cout << S[i] << " Char: " << mp[S[i]] << " value:" << endl;
             }
-            if (4 * num < ans)
-                ans -= num;
             else
-                ans += num;
+            {
+                res += mp[S[i]];
+                cout << S[i] << " Char: " << mp[S[i]] << " value:" << endl;
+            }
         }
-        return ans;
+        return res;
     }
 
     int romanToInt(string s)
@@ -60,6 +43,6 @@ public:
 int main()
 {
     Solution s;
-    cout << s.romanToInt("MCMXCIIIIV") << endl;
+    cout << s.romanToInt2("MCMXCIIIIV") << endl;
     return 0;
 }
