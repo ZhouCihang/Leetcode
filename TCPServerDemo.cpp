@@ -25,23 +25,51 @@ int main()
     }
 
     //create a socket
-    SOCKET listening = socket(AF_INET, SOCK_STREAM, 0); //AF_INET ipv4, SOCK_STREAM TCP
-    if (listening == INVALID_SOCKET)
+    SOCKET serverSock = socket(AF_INET, SOCK_STREAM, 0); //AF_INET ipv4, SOCK_STREAM TCP
+    if (serverSock == INVALID_SOCKET)
     {
         cerr << "Can't create a socket! Quiting" << endl;
     }
 
     //Bind the socket to an ip address and port
-    sockaddr_in hint;
-    hint.sin_family = AF_INET;
-    hint.sin_port = htons(54000);
-    hint.sin_addr.S_un.S_addr = INADDR_ANY
-        bind(listening, (sockaddr *)&hint, sizeof(hint));
+    sockaddr_in addr;
+    addr.sin_family = AF_INET;
+    addr.sin_port = htons(54000);
+    addr.sin_addr.S_un.S_addr = INADDR_ANY;
+    bind(serverSock, (sockaddr *)&addr, sizeof(addr));
 
     //tell winsock the socket is for listening
-    listen(listening, SOMACOMM);
+    listen(serverSock, SOMACOMM);
+    cout << "tcp server is listening at port 9999:" << endl;
 
-    //wait for a connection
+    SOCKET clientSock;
+    sockaddr_in clientaddr;
+    int len = sizeof(clientaddr);
+
+    char buf[] = "hello Server!";
+    char recvBuf[512] = {0};
+    while (true)
+    {
+        clientSock = accept(serverSock, (sockaddr *)&clientaddr, &len);
+        if (clientSock == INVALID_SOCKET)
+        {
+            cout << "client:" << inet_ntoa(clientaddr.sin_addr) << clientaddr.sin_port << " is connected." << endl;
+            int i = send(clientSock, buf, strlen(buf), 0);
+            int recvLen = recv(clientSock, recvBuf, sizeof(recvBuf), 0);
+            cout << recvBuf << endl;
+            closesocket(clientSock);
+        }
+    }
+
+    //close the socket
+    closesocket(serverSock);
+    //shutdown cleanup winsock
+    WSACleanup();
+    return 0;
+}
+
+/*
+ //wait for a connection
     sockaddr_in client;
     int clienSize = sizeof(client);
 
@@ -66,26 +94,23 @@ int main()
     closesocket(listening);
     //while loop: accept and echo message back to client
     char buf[4096];
-    while(true){
+    while (true)
+    {
         ZeroMemory(buf, 4096);
         //wait for client to send data
         int byteReceived = recv(clientSocket, buf, 4096, 0);
-        if(byteReceived == SOCKET_ERROR){
-            cerr<<"Error in recv(). Quiting"<<endl;
+        if (byteReceived == SOCKET_ERROR)
+        {
+            cerr << "Error in recv(). Quiting" << endl;
             break;
         }
-        if(byteReceived == 0){
-            cout<<"Client disconnected"<<endl;
+        if (byteReceived == 0)
+        {
+            cout << "Client disconnected" << endl;
             break;
         }
 
         //Echo message back to client
         send(clientSocket, buf, byteReceived + 1, 0);
     }
-
-    //close the socket
-    closesocket(clientSocket);
-    //shutdown cleanup winsock
-    WSACleanup();
-    return 0;
-}
+*/

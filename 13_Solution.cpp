@@ -13,7 +13,7 @@ public:
         {
             if (mp[S[i]] < mp[S[i + 1]] && i != S.length() - 1)
             {
-                res = res - mp[S[i]];
+                res -= mp[S[i]];
                 cout << S[i] << " Char: " << mp[S[i]] << " value:" << endl;
             }
             else
