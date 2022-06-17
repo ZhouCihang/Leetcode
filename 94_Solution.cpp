@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 #include <vector>
+#include <stack>
 
 struct TreeNode
 {
@@ -23,10 +24,32 @@ public:
     }
     void traverse(TreeNode *cur, vector<int> &vec)
     {
-        if(cur == NULL) return;
+        if (cur == NULL)
+            return;
         traverse(cur->left, vec);
         vec.push_back(cur->val);
         traverse(cur->right, vec);
+    }
+
+    vector<int> inorderTraversalIter(TreeNode *root)
+    {
+        stack<TreeNode *> st;
+        vector<int> result;
+
+        TreeNode *cur = root;
+        while(cur != NULL || !st.empty()){
+            if(cur != NULL){
+                st.push(cur);
+                cur = cur->left;
+            }
+            else{
+                cur = st.top();
+                st.pop();
+                result.push_back(cur->val);
+                cur = cur->right;
+            }
+        }
+        return result;
     }
 };
 
